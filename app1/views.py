@@ -4,14 +4,13 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-# Create your views here.
+ # Create your views here.
 
 @csrf_exempt
 def get_images(request):
 	response_data={}
 	if request.method=='GET':
 		try:
-
 			image_list_data=image_data.objects.filter(show=True)
 			for o in image_list_data:
 			    response_data['image']=request.scheme+'://'+request.get_host()+'/media/'+str(o.image)
@@ -27,3 +26,4 @@ def get_images(request):
 	
 	print JsonResponse(response_data)
 	return JsonResponse(response_data)
+
